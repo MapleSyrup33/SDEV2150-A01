@@ -54,9 +54,20 @@ const resultData = [
 
 
 const resultsComponent = document.querySelector('resource-results');
-resultsComponent.results = resultData;  // passes the data to ResourceResults.results setter, since we made the array itself private
+resultsComponent.results = resultData;
 
 const detailsComponent = document.querySelector('resource-details');
 resultsComponent.addEventListener('resource-selected', (event) => {
   detailsComponent.resource = event.detail.result;
+});
+
+// Listen for the filter submit event (see: ResourceFilters._handleSubmit()).
+// Handle it by passing emitted data to the results component. 
+const filtersComponent = document.querySelector('resource-filters');
+filtersComponent.addEventListener('resource-filters-changed', (event) => {
+  resultsComponent.filters = event.detail; 
+  // We should also reset our details card, since the results list re-rendered!
+  // You'll notice stuff like this by extensively playing around with your UI and trying to break it.
+  const detailsComponent = document.querySelector('resource-details');
+  detailsComponent.resource = null;
 });

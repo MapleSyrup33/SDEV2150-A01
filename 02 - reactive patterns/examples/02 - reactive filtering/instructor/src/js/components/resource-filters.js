@@ -46,14 +46,78 @@ template.innerHTML = `
     </div>
   </aside>`;
 
+
 class ResourceFilters extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleCategoryClick = this._handleCategoryClick.bind(this);
   }
 
   connectedCallback() {
     this.render();
+
+    // Trying to add event listeners before rendering the element to DOM won't work!
+    this._form = this.shadowRoot.querySelector('#frm-filter');
+    this._form.addEventListener('submit', this._handleSubmit);
+
+    this._categoryGroup = this.shadowRoot.querySelector('[aria-label="Category filters"]')
+    this._categoryGroup.addEventListener('click', this._handleCategoryClick);
+  }
+
+  disconnectedCallback() {
+    if (this._form) {
+      this._form.removeEventListener('submit', this._handleSubmit);
+    }
+    if (this._categoryGroup) {
+      this._categoryGroup.removeEventListener('click', this._handleCategoryClick);
+    }
+  }
+
+  _handleCategoryClick(event) {
+    const button = event.target.closest('button');
+    if (!button || !this._categoryGroup.contains(button)) {
+      return;
+    }
+
+    const activeButton = this._categoryGroup.querySelector('.active');
+    if (activeButton && activeButton !== button) {
+      activeButton.classList.remove('active');
+    }
+
+    button.classList.add('active');
+  }
+
+  _handleSubmit(event) {
+    event.preventDefault();
+
+    const searchQuery = this.shadowRoot.querySelector('#q').value.trim();
+    const categoryGroup = this.shadowRoot.querySelector('[aria-label="Category filters"]')
+    const categoryButton = categoryGroup.querySelector('.active') || categoryGroup.querySelector('button');
+    const category = categoryButton ? categoryButton.textContent.trim().toLowerCase() : 'all'
+    const openNow = this.shadowRoot.querySelector('#openNow').checked;
+    const virtual = this.shadowRoot.querySelector('#virtual').checked;
+
+    const filters = {
+      searchQuery,
+      category,
+      openNow,
+      virtual,
+    };
+
+    const filtersEvent = new CustomEvent(
+      'resource-filters-changed',
+      {
+        detail: filters,
+        bubbles: true,
+        composed: true,
+      }
+    );
+
+    this.dispatchEvent(filtersEvent);
+    // console.log(filtersEvent);
   }
 
   render() {

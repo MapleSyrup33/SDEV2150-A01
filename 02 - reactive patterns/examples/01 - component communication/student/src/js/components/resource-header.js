@@ -10,7 +10,7 @@ template.innerHTML = `
         </p>
       </div>
     </div>
-  </header>`
+  </header>`;
 
 class ResourceHeader extends HTMLElement {
   constructor() {

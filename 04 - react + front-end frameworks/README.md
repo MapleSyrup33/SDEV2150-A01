@@ -23,5 +23,6 @@
 ## Documentation:
 
 - [React docs](https://react.dev/reference/react)
+- [Tailwind docs](https://tailwindcss.com/docs)
 - [MDN – Getting Started with React](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Frameworks_libraries/React_getting_started)
 - [MDN - JSX intro](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/JSX)

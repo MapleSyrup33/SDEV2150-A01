@@ -1,12 +1,9 @@
 // src/components/Details.jsx
+import Card from './ui/Card';
 export default function Details() {
   return (
-    <section className="h-full">
-      <div className="h-full rounded border border-gray-200 bg-white shadow-sm">
-        <div className="border-b border-gray-200 px-4 py-3">
-          <strong className="text-sm text-gray-900">Details</strong>
-        </div>
 
+<Card title="Details">
         <div className="space-y-3 p-4">
           <div>
             <h2 className="text-base font-semibold text-gray-900">Peer Tutoring Centre</h2>
@@ -32,7 +29,7 @@ export default function Details() {
           <button
             type="button"
             className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
-          >
+            >
             Copy email
           </button>
           <button
@@ -42,7 +39,6 @@ export default function Details() {
             Open map
           </button>
         </div>
-      </div>
-    </section>
+</Card>
   );
 }

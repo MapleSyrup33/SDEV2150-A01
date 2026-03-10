@@ -3,6 +3,7 @@ import Card from './ui/Card';
 // src/components/Details.jsx
 export default function Details() {
   return (
+    
     <Card title="Resource Details">
       <div className="space-y-3 p-4">
         <div>

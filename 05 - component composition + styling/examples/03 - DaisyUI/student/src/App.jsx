@@ -6,6 +6,9 @@ import PageLayout from './components/layout/PageLayout';
 
 function App() {
   return (
+    <html data-theme="cupcake">
+
+
     <PageLayout header={<Header tagline="Find the right resources, right away" />}>
       <aside className="md:col-span-3 lg:col-span-1">
         <Filters />
@@ -17,6 +20,7 @@ function App() {
         <Details />
       </aside>
     </PageLayout>
+    </html>
     // <PageLayout
     //   header={<Header tagline="Find the right resources, right away" />}
     //   left={<Filters />}

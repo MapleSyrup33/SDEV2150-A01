@@ -1,6 +1,6 @@
 export default function PageLayout({ header, children }) { //({ header, left, middle, right }) {
 
-  const theme="dracula"
+  const theme="cupcake"
 
   return (
     <div data-theme={theme} className="min-h-screen bg-base-200">

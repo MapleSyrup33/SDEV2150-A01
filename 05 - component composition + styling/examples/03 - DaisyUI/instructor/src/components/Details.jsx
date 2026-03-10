@@ -38,6 +38,7 @@ export default function Details() {
         >
           Open map
         </button>
+        <button className="btn btn-primary">am i cute and purple</button>
       </div>
     </Card>
   );

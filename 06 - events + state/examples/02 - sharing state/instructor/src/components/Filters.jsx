@@ -21,6 +21,12 @@ export default function Filters({
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!searchTerm.trim() && selectedCategories.length === 0 && !openNowOnly) {
+      alert('Please select at least one filter option.');
+      return;
+    }
+  
     console.log('Filters submitted');
   }
 

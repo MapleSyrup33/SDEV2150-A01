@@ -1,16 +1,9 @@
 import ResultsItem from './ResultsItem';
-//import { resources } from '../data/resources';
+// The following is no longer necesary, data is passed in as a prop
+// import { resources } from '../data/resources';
 import Card from './ui/Card';
 
-export default function Results({
-  selectedResource,
-  searchTerm,
-  selectedCategories,
-  onSelectResource,
-  openNowOnly,
-  virtualOnly,
-  resources,
-}) {
+export default function Results({ resources, selectedResource, searchTerm, selectedCategories, onSelectResource, openNowOnly, virtualOnly }) {
   return (
     <Card title="Results">
       <ul className="divide-y divide-gray-200">

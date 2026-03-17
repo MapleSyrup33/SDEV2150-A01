@@ -63,3 +63,8 @@ export function useSelectedResource() {
 
 	return [selectedResource, updateSelectedResource]
 }
+
+
+// N.B. You can use localStorage or sessionStorage without changing any other implementation details!
+//      If you use localStorage instead, you can see that the selection persists across closing 
+//      & reopening the browser.

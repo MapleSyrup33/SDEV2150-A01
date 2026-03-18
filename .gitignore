@@ -122,6 +122,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+pnpm-lock.yaml
 
 # vercel
 .vercel

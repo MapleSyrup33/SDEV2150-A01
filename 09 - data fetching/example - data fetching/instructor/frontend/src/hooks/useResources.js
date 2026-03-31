@@ -10,10 +10,10 @@ export function useResources() {
   async function fetchResources(signal) {
     setIsLoading(true);
     setError(null);
-    
-    // force a delay using a Promise timeout (this one is 2 seconds)
-    await new Promise((resolve) => setTimeout(resolve, 350));
-    
+
+    // delay for demo purposes
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     try {
       const res = await fetch(`${API_BASE_URL}/resources`, { signal });
 
@@ -46,5 +46,35 @@ export function useResources() {
     fetchResources(controller.signal);
   }
 
-  return { resources, isLoading, error, refetch };
+  // Added as student exercise solution
+  async function addResource(newResource) {
+    setIsLoading(true);
+    setError(null);
+
+    // delay for demo purposes
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/resources`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newResource),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Request failed: ${res.status} ${res.statusText}`);
+      }
+
+      const created = await res.json();
+      setResources((prev) => [...prev, created]);
+      return created;
+    } catch (err) {
+      setError(err);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return { resources, isLoading, error, refetch, addResource };
 }

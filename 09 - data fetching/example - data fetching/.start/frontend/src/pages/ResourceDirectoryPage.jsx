@@ -1,19 +1,12 @@
-// react hooks
 import { useState } from 'react';
+import { useResources } from '../hooks/useResources';
+import { useSelectedResource } from '../hooks/useSelectedResource';
 
-// custom hooks
-import { useResources } from './hooks/useResources';
-import { useSelectedResource } from './hooks/useSelectedResource';
+import Filters from '../components/Filters';
+import Results from '../components/Results';
+import Details from '../components/Details';
 
-//
-
-import Header from './components/Header';
-import Filters from './components/Filters';
-import Results from './components/Results';
-import Details from './components/Details';
-import PageLayout from './components/layout/PageLayout';
-
-function App() {
+export default function ResourceDirectoryPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [openNowOnly, setOpenNowOnly] = useState(false);
@@ -24,7 +17,7 @@ function App() {
   const { resources, isLoading, error, refetch } = useResources();
 
   return (
-    <PageLayout header={<Header tagline="Find the right resources, right away" />}>
+    <>
       {/* The following is not great for UX/UI, but it gets the point across. Feel free to style
       the loading and error states in "nicer" way. */}
       {isLoading && (
@@ -70,8 +63,7 @@ function App() {
             Select a resource to view details.
           </div>
         )}
-      </aside>    </PageLayout>
+      </aside>
+    </>
   );
 }
-
-export default App;

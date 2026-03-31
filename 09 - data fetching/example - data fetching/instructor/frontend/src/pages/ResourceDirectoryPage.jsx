@@ -1,16 +1,10 @@
-// react hooks
 import { useState } from 'react';
-
-// custom hooks
 import { useResources } from '../hooks/useResources';
 import { useSelectedResource } from '../hooks/useSelectedResource';
 
-// our own components
-import Header from '../components/Header';
 import Filters from '../components/Filters';
 import Results from '../components/Results';
 import Details from '../components/Details';
-import PageLayout from '../components/layout/PageLayout';
 
 export default function ResourceDirectoryPage() {
   const [searchTerm, setSearchTerm] = useState('');

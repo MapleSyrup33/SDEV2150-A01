@@ -56,6 +56,28 @@ export default function AdminPage() {
   */}
   const [formData, setFormData] = useState(EXAMPLE_RESOURCE)
 
+  async function handleCreateResource(e) {
+    // 1. prevent default behaviour of form
+    e.preventDefault();
+
+    // 2. post to API - objectively, I should abstract this out into API layer
+    const res = await fetch(
+      'http://localhost:3000/resources',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      }
+    );
+
+    console.log(res)
+    // 3. refetch/re-render based on new data
+    refetch();
+
+  }
+
   return (
     <>
       <div>
@@ -68,7 +90,11 @@ export default function AdminPage() {
       <section className="md:col-span-3 lg:col-span-3">
         <Card title="Resource Form">
           <div className="card-body">
-            <form id="frm-add-resource" className="space-y-4">
+            <form
+              id="frm-add-resource"
+              className="space-y-4"
+              onSubmit={handleCreateResource}
+            >
 
               <div className="space-y-1">
                 <label htmlFor="title" className="block text-sm font-medium text-gray-700">

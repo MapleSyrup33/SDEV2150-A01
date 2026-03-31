@@ -1,9 +1,16 @@
+// react hooks
 import { useState } from 'react';
 
+// react-router hooks
+import { useParams } from 'react-router';
+
+// our custom hooks/components
 import { useResources } from '../hooks/useResources';
 import Card from '../components/ui/Card';
 
+
 export default function AdminPage() {
+
   const [formData, setFormData] = useState({
     title: 'Study Group',
     category: 'Wellness',
@@ -16,26 +23,14 @@ export default function AdminPage() {
   });
 
   const { resources, addResource, isLoading, error, refetch } = useResources();
+  
+  const { resourceId } = useParams(); // not doing anything with this yet
 
   async function handleCreateResource(e) {
     e.preventDefault();
 
-    // Added as student exercise solution
+    // Added as student exercise solution -- replaces inline fetch
     addResource(formData);
-
-    // const res = await fetch('http://localhost:3000/resources', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // });
-
-    // if (!res.ok) {
-    //   throw new Error('Could not create resource');
-    // }
-
-    // refetch();
   }
 
   return (

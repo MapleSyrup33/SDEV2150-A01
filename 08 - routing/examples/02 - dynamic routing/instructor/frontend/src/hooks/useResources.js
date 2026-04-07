@@ -11,8 +11,8 @@ export function useResources() {
     setIsLoading(true);
     setError(null);
 
-    // delay for demo purposes
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // comment out for demo purposes
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
 
     try {
       const res = await fetch(`${API_BASE_URL}/resources`, { signal });
@@ -60,6 +60,8 @@ export function useResources() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newResource),
       });
+
+      console.log(res)
 
       if (!res.ok) {
         throw new Error(`Request failed: ${res.status} ${res.statusText}`);

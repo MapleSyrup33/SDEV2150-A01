@@ -35,31 +35,19 @@ let router = createBrowserRouter(
        - what if we made the external data immediately available to the component?
          (bypass the lifecycle constraints of component rendering -> external data)
   */
+  
+
+  // anything nested (in the declarative syntax) just becomes an array of children
+  // (in the new data-routing syntax)
   [
-    {
-      path: "/",
-      Component: App,
-      // anything nested (in the declarative syntax) just becomes an array of children
-      // (in the new data-routing syntax)
-      children: [
-        {
-          index: true,
-          Component: ResourceDirectoryPage,
-          loader: resourceDirectoryLoader,
-        },
-        {
-          path: "admin",
-          Component: AdminPage,
-          loader: adminLoader,
-        },
-        {
-          path: "admin/:resourceId",
-          Component: AdminPage,
-          loader: adminLoader,
-        },
+    { path: "/", Component: App, children: [
+        { index: true, Component: ResourceDirectoryPage, loader: resourceDirectoryLoader },
+        { path: "admin", Component: AdminPage, loader: adminLoader },
+        { path: "admin/:resourceId", Component: AdminPage, loader: adminLoader },
       ]
     }
   ]
+
 )
 
 createRoot(document.getElementById('root')).render(
